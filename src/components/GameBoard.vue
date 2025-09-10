@@ -1,0 +1,73 @@
+<script setup lang='ts'>
+import {computed, ref} from 'vue';
+import BoardTile from './BoardTile.vue';
+
+type Props = {
+  rows: number;
+  cols: number;
+  ships: { coords: { row: number; col: number }[]; }[];
+};
+
+const props = defineProps<Props>();
+
+const targeted = ref<{ row: number; col: number }[]>([]);
+
+const rowsIndexes = computed(() => Array.from({ length: props.rows }, (_, i) => i));
+const colsIndexes = computed(() => Array.from({ length: props.cols }, (_, i) => i));
+
+function onTileFire(payload: { row: number; col: number }) {
+  if (!targeted.value.find(t => t.row === payload.row && t.col === payload.col)) {
+    targeted.value.push(payload);
+  }
+}
+
+const boardStyle = computed(() => ({
+  gridTemplateColumns: `repeat(${props.cols}, 1fr)`,
+}));
+</script>
+
+<template>
+  <div class='board' :style='boardStyle'>
+    <div class="column-label" v-for="i in colsIndexes" :key="`col-label-${i}`">
+      {{ i }}
+    </div>
+
+    <template v-for='rowIndex in rowsIndexes' :key='`row-${rowIndex}`'>
+      <div class="row-label" :style="`top: ${70 + (59 * rowIndex)}px`">
+        {{ String.fromCharCode(65 + rowIndex) }}
+      </div>
+      <BoardTile
+        v-for='colIndex in colsIndexes'
+        :key='`col-${rowIndex}-${colIndex}`'
+        :row='rowIndex'
+        :col='colIndex'
+        :targeted='!!targeted.find(t => t.row === rowIndex && t.col === colIndex)'
+        :has-ship='!!props.ships.find(s => s.coords.find(coord => coord.row === rowIndex && coord.col === colIndex))'
+        @fire='(payload) => onTileFire(payload)'
+      />
+    </template>
+  </div>
+</template>
+
+<style scoped>
+.board {
+  position: relative;
+  display: grid;
+  grid-auto-rows: minmax(32px, 1fr);
+  gap: 4px;
+}
+
+.column-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row-label {
+  position: absolute;
+  left: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
