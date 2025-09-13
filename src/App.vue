@@ -15,32 +15,16 @@ const moves = ref<{
   col: number;
 }[]>([]);
 
-const lastMoveHit = computed(() => {
-  if (moves.value.length === 0) return undefined;
-
-  const lastMove = moves.value[moves.value.length - 1];
-  return !!ships.find(s => s.coords.find(c => c.row === lastMove.row && c.col === lastMove.col));
-})
-
+// When this hits zero we will show a "You win!" message with a reset button
 const shipsRemaining = computed(() => {
-  return ships.filter(s => !s.coords.every(c => moves.value.find(m => m.row === c.row && m.col === c.col))).length;
-});
-
-const lastMoveSankShip = computed(() => {
-  if (moves.value.length === 0) return false;
-
-  const lastMove = moves.value[moves.value.length - 1];
-  return ships.some(s => s.coords.some(c => c.row === lastMove.row && c.col === lastMove.col) &&
-    s.coords.every(c => moves.value.find(m => m.row === c.row && m.col === c.col)));
+  return ships.filter(s => !s.coords.every(coord => moves.value.find(m => m.row === coord.row && m.col === coord.col))).length;
 });
 </script>
 
 <template>
   <GameInfo
-    :moves="moves.length"
-    :ships-remaining="shipsRemaining"
-    :last-hit="lastMoveHit"
-    :last-move-sank-ship="lastMoveSankShip"
+    :moves="moves"
+    :ships="ships"
   />
   <GameBoard
     :rows='rows'

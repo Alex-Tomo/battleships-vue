@@ -1,3 +1,5 @@
+import type {Coordinate} from "../types/common.types.ts";
+
 export default function generateShips() {
   return [
     {
@@ -31,3 +33,6 @@ export default function generateShips() {
   ];
 }
 
+export function coordinatesMatch(a: Coordinate, b: Coordinate): boolean {
+  return a.row === b.row && a.col === b.col;
+}

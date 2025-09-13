@@ -1,12 +1,13 @@
 <script setup lang='ts'>
 import {computed} from 'vue';
 import BoardTile from './BoardTile.vue';
+import type {Coordinates, Ships} from "../types/common.types.ts";
 
 type Props = {
   rows: number;
   cols: number;
-  moves: { row: number; col: number }[];
-  ships: { coords: { row: number; col: number }[]; }[];
+  moves: Coordinates;
+  ships: Ships;
 };
 
 const props = defineProps<Props>();
