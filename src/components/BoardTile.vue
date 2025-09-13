@@ -16,7 +16,7 @@ const isMiss = computed(() => props.targeted && !props.hasShip);
 </script>
 
 <template>
-  <button
+  <div
     class='tile'
     :class='{
       fog: hasFog,
@@ -28,12 +28,18 @@ const isMiss = computed(() => props.targeted && !props.hasShip);
     <span v-if='isHit'>●</span>
     <span v-else-if='isMiss'>×</span>
     <span v-else>&nbsp;</span>
-  </button>
+  </div>
 </template>
 
 <style scoped>
 .tile {
   min-width: 55px;
   min-height: 55px;
+  background: #252323;
+  border: 1px solid #444;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
