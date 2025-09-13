@@ -3,6 +3,7 @@ const props = defineProps<{
   moves?: number;
   shipsRemaining?: number;
   lastHit?: boolean;
+  lastMoveSankShip?: boolean;
 }>();
 </script>
 
@@ -13,6 +14,9 @@ const props = defineProps<{
     <div>
       <span v-if="props.lastHit !== undefined">
         {{ props.lastHit ? 'Hit!' : 'Miss!' }}
+      </span>
+      <span v-if="props.lastMoveSankShip">
+        You sank a ship!
       </span>
     </div>
   </div>
