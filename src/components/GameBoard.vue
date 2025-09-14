@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import {computed} from 'vue';
 import BoardTile from './BoardTile.vue';
-import type {Coordinates, Ships} from "../types/common.types.ts";
+import type {Coordinates, Ships} from '../types/common.types.ts';
 
 type Props = {
   rows: number;
@@ -22,12 +22,12 @@ const boardStyle = computed(() => ({
 
 <template>
   <div class='board' :style='boardStyle'>
-    <div class="column-label" v-for="i in colsIndexes" :key="`col-label-${i}`">
+    <div class='column-label' v-for='i in colsIndexes' :key='`col-label-${i}`'>
       {{ i+1 }}
     </div>
 
     <template v-for='rowIndex in rowsIndexes' :key='`row-${rowIndex}`'>
-      <div class="row-label" :style="`top: ${70 + (59 * rowIndex)}px`">
+      <div class='row-label' :style='`top: ${70 + (59 * rowIndex)}px`'>
         {{ String.fromCharCode(65 + rowIndex) }}
       </div>
       <BoardTile

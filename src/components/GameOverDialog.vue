@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import {ref, watch} from "vue";
+import {ref, watch} from 'vue';
 
 const props = defineProps<{
   gameOver: boolean;
@@ -22,10 +22,10 @@ watch(
 </script>
 
 <template>
-  <dialog ref="dialog">
+  <dialog ref='dialog'>
     <h2>Game Over</h2>
     <p>Congratulations! You've sunk all the ships in {{ props.totalMoves }} moves!</p>
-    <button @click="emit('restart')">Play Again</button>
+    <button @click='emit("restart")'>Play Again</button>
   </dialog>
 </template>
 

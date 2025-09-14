@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import {ref} from "vue";
+<script setup lang='ts'>
+import {ref} from 'vue';
 
 const props = defineProps<{
   rows: number;
@@ -35,14 +35,14 @@ function onFire() {
 </script>
 
 <template>
-  <div class="player-input">
+  <div class='player-input'>
     <input
-      placeholder="A1"
-      v-model="playerInput"
+      placeholder='A1'
+      v-model='playerInput'
     />
     <button
-      type="button"
-      @click="onFire"
+      type='button'
+      @click='onFire'
     >
       Fire!
     </button>
