@@ -37,12 +37,12 @@
 ## Getting Started
 1. Clone the repository:
 ```
-git clone xxx
+git clone https://github.com/Alex-Tomo/battleships-vue.git
 ```
 
 2. Navigate to the project directory:
 ```
-cd xxx
+cd battleships-vue
 ```
 
 3. Install dependencies:
@@ -63,4 +63,9 @@ npm run build
 ## Previewing the Production Build (After Building the Application)
 ```
 npm run preview
+```
+
+## Running Tests
+```
+npm run test
 ```
