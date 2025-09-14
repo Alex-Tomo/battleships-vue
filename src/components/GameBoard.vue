@@ -27,7 +27,7 @@ const boardStyle = computed(() => ({
     </div>
 
     <template v-for='rowIndex in rowsIndexes' :key='`row-${rowIndex}`'>
-      <div class='row-label' :style='`top: ${70 + (59 * rowIndex)}px`'>
+      <div class='row-label' :style='`top: ${70 + (62 * rowIndex)}px`'>
         {{ String.fromCharCode(65 + rowIndex) }}
       </div>
       <BoardTile

@@ -10,7 +10,6 @@ type Props = {
 
 const props = defineProps<Props>();
 
-const hasFog = computed(() => !props.targeted);
 const isHit = computed(() => props.targeted && props.hasShip);
 const isMiss = computed(() => props.targeted && !props.hasShip);
 </script>
@@ -18,16 +17,10 @@ const isMiss = computed(() => props.targeted && !props.hasShip);
 <template>
   <div
     class='tile'
-    :class='{
-      fog: hasFog,
-      hit: isHit,
-      miss: isMiss,
-      ship: hasShip,
-    }'
+    :class='{ hit: isHit, miss: isMiss }'
   >
     <span v-if='isHit'>●</span>
     <span v-else-if='isMiss'>×</span>
-    <span v-else>&nbsp;</span>
   </div>
 </template>
 

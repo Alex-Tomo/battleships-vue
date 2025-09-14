@@ -25,7 +25,7 @@ const onFire = (move: string) => {
 
   // Check if the player has already fired at this location
   if (moves.value.find(m => m.row === (letter.charCodeAt(0) - 65) && m.col === (Number(number) - 1))) {
-    console.log('Already fired at this location');
+    alert('Already fired at this location');
     return;
   }
 

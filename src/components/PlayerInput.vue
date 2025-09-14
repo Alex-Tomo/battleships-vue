@@ -12,8 +12,14 @@ const emit = defineEmits<{
 const playerInput = ref('');
 
 function onFire() {
-  if (!playerInput.value) return;
-  if (playerInput.value.length < 2) return;
+  if (!playerInput.value) {
+    alert('Please enter a tile, i.e. A1');
+    return;
+  }
+  if (playerInput.value.length < 2) {
+    alert('Please enter a valid tile, i.e. A1');
+    return;
+  }
 
   // a1 -> A1
   const value = playerInput.value.toUpperCase();
