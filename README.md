@@ -1,5 +1,8 @@
 # Battleships
 
+## Description
+Took around 4 hours of development time to build.
+
 ## Tech Stack
 - Vue 3
 - Vite
