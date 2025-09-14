@@ -16,6 +16,9 @@ export default function generateShips(data: {
   const shipTypes = [
     { name: 'Battleship', length: 5 },
     { name: 'Destroyer', length: 4 },
+    { name: 'Boat', length: 3 },
+    { name: 'Mini', length: 2 },
+    { name: 'Tiny', length: 1 },
   ];
 
   const ships: Ships = [];
@@ -72,4 +75,9 @@ export default function generateShips(data: {
 // Check if two coordinates are the same
 export function coordinatesMatch(a: Coordinate, b: Coordinate): boolean {
   return a.row === b.row && a.col === b.col;
+}
+
+// Check if two sets of coordinates overlap
+export function coordinatesOverlap(a: Coordinate[], b: Coordinate[]): boolean {
+  return a.some(coordA => b.some(coordB => coordinatesMatch(coordA, coordB)));
 }
