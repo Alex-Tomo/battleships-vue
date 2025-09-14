@@ -4,35 +4,46 @@ import GameBoard from './components/GameBoard.vue';
 import GameInfo from "./components/GameInfo.vue";
 import PlayerInput from "./components/PlayerInput.vue";
 import {computed, ref} from "vue";
-
-const ships = generateShips();
+import GameOverDialog from "./components/GameOverDialog.vue";
 
 const rows = 9;
 const cols = 9;
+
+const ships = ref(generateShips({ lengths: [5, 4, 4] }));
 
 const moves = ref<{
   row: number;
   col: number;
 }[]>([]);
+const key = ref(0);
 
-// When this hits zero we will show a "You win!" message with a reset button
-const shipsRemaining = computed(() => {
-  return ships.filter(s => !s.coords.every(coord => moves.value.find(m => m.row === coord.row && m.col === coord.col))).length;
+// Checks if all ships have been sunk
+const gameOver = computed(() => {
+  return ships.value.filter(s => !s.coords.every(coord => moves.value.find(m => m.row === coord.row && m.col === coord.col))).length === 0;
 });
+
+const onRestart = () => {
+  moves.value = [];
+  ships.value = generateShips({ lengths: [5, 4, 4] });
+  key.value += 1;
+};
 </script>
 
 <template>
   <GameInfo
+    :key="key"
     :moves="moves"
     :ships="ships"
   />
   <GameBoard
+    :key="key"
     :rows='rows'
     :cols='cols'
     :moves='moves'
     :ships='ships'
   />
   <PlayerInput
+    :key="key"
     :rows='rows'
     :cols='cols'
     @fire='(move: string) => {
@@ -50,6 +61,12 @@ const shipsRemaining = computed(() => {
         col: Number(number) - 1,
       });
     }'
+  />
+
+  <GameOverDialog
+    :game-over="gameOver"
+    :total-moves="moves.length"
+    @restart="onRestart"
   />
 </template>
 

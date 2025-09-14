@@ -1,6 +1,11 @@
 import type {Coordinate} from "../types/common.types.ts";
 
-export default function generateShips() {
+export default function generateShips(data: {
+  lengths: number[];
+}) {
+  // TODO: implement random ship placement algorithm
+  // TODO: implement lengths from data
+
   return [
     {
       name: "Battleship",
@@ -15,19 +20,19 @@ export default function generateShips() {
     {
       name: "Destroyer",
       coords: [
-        { col: 2, row: 2 },
-        { col: 2, row: 3 },
-        { col: 2, row: 4 },
-        { col: 2, row: 5 },
+        { col: 1, row: 0 },
+        { col: 1, row: 1 },
+        { col: 1, row: 2 },
+        { col: 1, row: 3 }
       ]
     },
     {
       name: "Destroyer",
       coords: [
-        { col: 5, row: 5 },
-        { col: 6, row: 5 },
-        { col: 7, row: 5 },
-        { col: 8, row: 5 },
+        { col: 2, row: 0 },
+        { col: 2, row: 1 },
+        { col: 2, row: 2 },
+        { col: 2, row: 3 },
       ]
     },
   ];

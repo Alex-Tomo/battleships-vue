@@ -37,9 +37,20 @@ const isMiss = computed(() => props.targeted && !props.hasShip);
   min-height: 55px;
   background: #252323;
   border: 1px solid #444;
+  font-size: 1.5rem;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.hit {
+    background: #8B0000;
+    color: white;
+  }
+
+  &.miss {
+    background: #006cdc;
+    color: white;
+  }
 }
 </style>
